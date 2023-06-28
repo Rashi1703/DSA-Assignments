@@ -1,0 +1,230 @@
+	                                                                    Assignment Questions
+
+Question 1
+Given two strings s and t, determine if they are isomorphic.
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+Example 1:
+Input: s = "egg", t = "add"
+Output: true
+Answer.
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+
+        int map1[]=new int[200];
+        int map2[]=new int[200];
+
+        if(s.length()!=t.length())
+            return false;
+
+
+        for(int i=0;i<s.length();i++)
+        {
+            if(map1[s.charAt(i)]!=map2[t.charAt(i)])
+                return false;
+
+            map1[s.charAt(i)]=i+1;
+            map2[t.charAt(i)]=i+1;
+        }
+        return true;
+    }
+}
+Question 2
+Given a string num which represents an integer, return true if num is a strobogrammatic number.
+A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+Example 1:
+Input: num = "69"
+Output:
+True
+Answer.
+class Solution {
+public:
+    bool isStrobogrammatic(string num) {
+        int len = num.size();
+        for (int i = 0; i < len; ++ i) {
+            switch (num[i] - 48) {
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 7: return false;
+                case 6: if ('9' != num[len - 1 - i]) return false; break;
+                case 9: if ('6' != num[len - 1 - i]) return false; break;
+                case 1:
+                case 8: 
+                case 0: if (num[i] != num[len - 1 - i]) return false; break;
+            }
+        }
+        return true;
+    }
+}
+Question 3
+Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
+You must solve the problem without using any built-in library for handling large integers (such as BigInteger). You must also not convert the inputs to integers directly.
+Example 1:
+Input: num1 = "11", num2 = "123"
+Output:
+"134"
+Answer.
+class Solution {
+    public String addStrings(String num1, String num2) {
+        StringBuilder sb = new StringBuilder();
+
+        int i = num1.length() - 1, j = num2.length() - 1;
+        int carry = 0;
+
+        while (i >= 0 || j >= 0) {
+            int sum = carry;
+
+            if (i >= 0) sum += (num1.charAt(i--) - '0');
+            if (j >= 0) sum += (num2.charAt(j--) - '0');
+
+            sb.append(sum % 10);
+            carry = sum / 10;
+        }
+
+        if (carry != 0) sb.append(carry);
+        return sb.reverse().toString();
+    }
+}
+Question 4
+Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+Example 1:
+Input: s = "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+Answer.
+class Solution {
+
+    public String reverseWords(String s) {
+        int lastSpaceIndex = -1;
+        char[] chArray = s.toCharArray();
+        int len = s.length();
+        for (int strIndex = 0; strIndex <= len; strIndex++) {
+            if (strIndex == len || chArray[strIndex] == ' ') {
+                int startIndex = lastSpaceIndex + 1;
+                int endIndex = strIndex - 1;
+                while (startIndex < endIndex) {
+                    char temp = chArray[startIndex];
+                    chArray[startIndex] = chArray[endIndex];
+                    chArray[endIndex] = temp;
+                    startIndex++;
+                    endIndex--;
+                }
+                lastSpaceIndex = strIndex;
+            }
+        }
+        return new String(chArray);
+    }
+
+}
+Question 5
+Given a string s and an integer k, reverse the first k characters for every 2k characters counting from the start of the string.
+If there are fewer than k characters left, reverse all of them. If there are less than 2k but greater than or equal to k characters, then reverse the first k characters and leave the other as original.
+Example 1:
+Input: s = "abcdefg", k = 2
+Output:
+"Bacdfeg"
+Answer.
+class Solution {
+    public String reverseStr(String s, int k) {
+        char[] a = s.toCharArray();
+        for (int start = 0; start < a.length; start += 2 * k) {
+            int i = start, j = Math.min(start + k - 1, a.length - 1);
+            while (i < j) {
+                char tmp = a[i];
+                a[i++] = a[j];
+                a[j--] = tmp;
+            }
+        }
+        return new String(a);
+    }
+}
+Question 6
+Given two strings s and goal, return true if and only if s can become goal after some number of shifts on s.
+A shift on s consists of moving the leftmost character of s to the rightmost position.
+For example, if s = "abcde", then it will be "bcdea" after one shift.
+Example 1:
+Input: s = "abcde", goal = "cdeab"
+Output:
+True
+Answer.
+class Solution {
+    public boolean rotateString(String A, String B) {
+        return A.length() == B.length() && (A + A).contains(B);
+    }
+}
+Question 7
+Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+Note that after backspacing an empty text, the text will continue empty.
+Example 1:
+Input: s = "ab#c", t = "ad#c"
+Output: true
+Explanation:
+Both s and t become "ac".
+Answer.
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        int i = S.length() - 1, j = T.length() - 1;
+        int skipS = 0, skipT = 0;
+
+        while (i >= 0 || j >= 0) { // While there may be chars in build(S) or build (T)
+            while (i >= 0) { // Find position of next possible char in build(S)
+                if (S.charAt(i) == '#') {skipS++; i--;}
+                else if (skipS > 0) {skipS--; i--;}
+                else break;
+            }
+            while (j >= 0) { // Find position of next possible char in build(T)
+                if (T.charAt(j) == '#') {skipT++; j--;}
+                else if (skipT > 0) {skipT--; j--;}
+                else break;
+            }
+            // If two actual characters are different
+            if (i >= 0 && j >= 0 && S.charAt(i) != T.charAt(j))
+                return false;
+            // If expecting to compare char vs nothing
+            if ((i >= 0) != (j >= 0))
+                return false;
+            i--; j--;
+        }
+        return true;
+    }
+}
+
+
+
+Question 8
+You are given an array coordinates, coordinates[i] = [x, y], where [x, y] represents the coordinate of a point. Check if these points make a straight line in the XY plane.
+Example 1:
+Input: coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]
+Output: true
+Answer.
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        int i = S.length() - 1, j = T.length() - 1;
+        int skipS = 0, skipT = 0;
+        while (i >= 0 || j >= 0) { // While there may be chars in build(S) or build (T)
+            while (i >= 0) { // Find position of next possible char in build(S)
+                if (S.charAt(i) == '#') {skipS++; i--;}
+                else if (skipS > 0) {skipS--; i--;}
+                else break;
+            }
+            while (j >= 0) { 
+                if (T.charAt(j) == '#') {skipT++; j--;}
+                else if (skipT > 0) {skipT--; j--;}
+                else break;
+            }
+            if (i >= 0 && j >= 0 && S.charAt(i) != T.charAt(j))
+                return false;
+            if ((i >= 0) != (j >= 0))
+                return false;
+            i--; j--;
+        }
+        return true;
+    }
+}
+
+
+
+
+
+
