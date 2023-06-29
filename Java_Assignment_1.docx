@@ -1,0 +1,66 @@
+                                                    	JAVA ASSIGNMENT -1
+
+Q1.What is the difference between Compiler and Interpreter
+Ans1.
+Compiler -> It is a software which takes sourcecode(HLL) as the input and generates MLL code as the ouput.
+To convert the HLL code to MLL code compiler will scan the HLL code only once.
+Compiler will speed up the process
+
+Interpreter =>It is a software which takes sourcecode(HLL) as the input and generates MLL code as the ouput.
+To convert the HLL code to MLL code interpreter will scan the HLL code mulitple times(depends on the instrcutions).
+Interpreter will slow down the process.
+
+Q2.What is the difference between JDK, JRE, and JVM?
+Ans2.
+=> JDK :: Java Development kit, it provides libraries and the requried files to run our java programs.
+=> JRE :: Java RunTimeEnvironment, It provides suitable environment to run our java program.
+=> JVM :: Java Virtual Machine, It is responsible to run our java programs on the basis of MultiThreading.
+
+Q3.How many types of memory areas are allocated by JVM?
+Ans3.
+Types of Memory Areas Allocated By the JVM:
+=> Class(Method) Area
+=> Heap.
+=> Program Counter Register.
+=> Native Method Stack.
+
+Q4.What is JIT compiler?
+Ans4.
+JIT stands for Java-In-Time Compiler. The JIT compilation is also known as dynamic compilation.
+A just-in-time (JIT) compiler is a program that turns bytecode into instructions that can be sent directly to a computer's processor (CPU).
+
+Q5.What are the various access specifiers in Java?
+Ans5.
+=> Public
+=> Private
+=> Protected
+=> Default
+
+Q6.What is a compiler in Java?
+Ans6.
+Java compilers are programs that take source code and produce class files containing platform-independent Java bytecode that can be executed by the
+Java Virtual Machine (JVM).
+
+Q7.Explain the types of variables in Java?
+Ans7.
+=> Local variables
+=> Static variables
+=> Instance variables
+
+Q8.What are the Datatypes in Java?
+Ans8.
+Data types specify the different sizes and values that can be stored in the variable. 
+There are two types of data types in Java:
+Primitive data types: The primitive data types include boolean, char, byte, short, int, long, float and double.
+Non-primitive data types: The non-primitive data types include Classes, Interfaces, and Arrays.
+
+Q9.What are the identifiers in java?
+Ans9.
+Identifer is a name in java program.
+Identifer can be classname,methodname,variablename,labelname.
+
+Q10.Explain the architecture of JVM 
+Ans10.
+JVM is the engine that drives the Java Code. 
+It converts Java bytecode into machine language. 
+JVM architecture in Java contains classloader, memory area, execution engine, etc.
