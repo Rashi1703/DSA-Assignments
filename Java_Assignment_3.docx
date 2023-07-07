@@ -1,0 +1,224 @@
+Assignment Questions 3
+Q1.Write a simple Banking System program by using OOPs concept where you can get account Holder name balance etc?
+Ans.
+import java.util.Scanner;  
+class BankDetails {  
+    private String accno;  
+    private String name;  
+    private String acc_type;  
+    private long balance;  
+    Scanner sc = new Scanner(System.in);  
+    //method to open new account  
+    public void openAccount() {  
+        System.out.print("Enter Account No: ");  
+        accno = sc.next();  
+        System.out.print("Enter Account type: ");  
+        acc_type = sc.next();  
+        System.out.print("Enter Name: ");  
+        name = sc.next();  
+        System.out.print("Enter Balance: ");  
+        balance = sc.nextLong();  
+    }  
+    //method to display account details  
+    public void showAccount() {  
+        System.out.println("Name of account holder: " + name);  
+        System.out.println("Account no.: " + accno);  
+        System.out.println("Account type: " + acc_type);  
+        System.out.println("Balance: " + balance);  
+    }  
+    //method to deposit money  
+    public void deposit() {  
+        long amt;  
+        System.out.println("Enter the amount you want to deposit: ");  
+        amt = sc.nextLong();  
+        balance = balance + amt;  
+    }  
+    //method to withdraw money  
+    public void withdrawal() {  
+        long amt;  
+        System.out.println("Enter the amount you want to withdraw: ");  
+        amt = sc.nextLong();  
+        if (balance >= amt) {  
+            balance = balance - amt;  
+            System.out.println("Balance after withdrawal: " + balance);  
+        } else {  
+            System.out.println("Your balance is less than " + amt + "\tTransaction failed...!!" );  
+        }  
+    }  
+    //method to search an account number  
+    public boolean search(String ac_no) {  
+        if (accno.equals(ac_no)) {  
+            showAccount();  
+            return (true);  
+        }  
+        return (false);  
+    }  
+}  
+public class BankingApp {  
+    public static void main(String arg[]) {  
+        Scanner sc = new Scanner(System.in);  
+        //create initial accounts  
+        System.out.print("How many number of customers do you want to input? ");  
+        int n = sc.nextInt();  
+        BankDetails C[] = new BankDetails[n];  
+        for (int i = 0; i < C.length; i++) {  
+            C[i] = new BankDetails();  
+            C[i].openAccount();  
+        }  
+        // loop runs until number 5 is not pressed to exit  
+        int ch;  
+        do {  
+            System.out.println("\n ***Banking System Application***");  
+            System.out.println("1. Display all account details \n 2. Search by Account number\n 3. Deposit the amount \n 4. Withdraw the amount \n 5.Exit ");  
+            System.out.println("Enter your choice: ");  
+            ch = sc.nextInt();  
+                switch (ch) {  
+                    case 1:  
+                        for (int i = 0; i < C.length; i++) {  
+                            C[i].showAccount();  
+                        }  
+                        break;  
+                    case 2:  
+                        System.out.print("Enter account no. you want to search: ");  
+                        String ac_no = sc.next();  
+                        boolean found = false;  
+                        for (int i = 0; i < C.length; i++) {  
+                            found = C[i].search(ac_no);  
+                            if (found) {  
+                                break;  
+                            }  
+                        }  
+                        if (!found) {  
+                            System.out.println("Search failed! Account doesn't exist..!!");  
+                        }  
+                        break;  
+                    case 3:  
+                        System.out.print("Enter Account no. : ");  
+                        ac_no = sc.next();  
+                        found = false;  
+                        for (int i = 0; i < C.length; i++) {  
+                            found = C[i].search(ac_no);  
+                            if (found) {  
+                                C[i].deposit();  
+                                break;  
+                            }  
+                        }  
+                        if (!found) {  
+                            System.out.println("Search failed! Account doesn't exist..!!");  
+                        }  
+                        break;  
+                    case 4:  
+                        System.out.print("Enter Account No : ");  
+                        ac_no = sc.next();  
+                        found = false;  
+                        for (int i = 0; i < C.length; i++) {  
+                            found = C[i].search(ac_no);  
+                            if (found) {  
+                                C[i].withdrawal();  
+                                break;  
+                            }  
+                        }  
+                        if (!found) {  
+                            System.out.println("Search failed! Account doesn't exist..!!");  
+                        }  
+                        break;  
+                    case 5:  
+                        System.out.println("See you soon...");  
+                        break;  
+                }  
+            }  
+            while (ch != 5);  
+        }  
+    }  
+
+
+Q2. Write a Program where you inherit method from parent class and show method Overridden Concept?
+Ans.
+class Vehicle{    
+  void run(){System.out.println("Vehicle is running");}  
+}  
+class Bike2 extends Vehicle{  
+  //defining the same method as in the parent class  
+  void run(){System.out.println("Bike is running safely");}  
+  
+  public static void main(String args[]){  
+  Bike2 obj = new Bike2();
+  obj.run();
+  }  
+}  
+
+
+Q3.Write a program to show run time polymorphism in java?
+Ans. 
+class Shape{  
+void draw(){System.out.println("drawing...");}  
+}  
+class Rectangle extends Shape{  
+void draw(){System.out.println("drawing rectangle...");}  
+}  
+class Circle extends Shape{  
+void draw(){System.out.println("drawing circle...");}  
+}  
+class Triangle extends Shape{  
+void draw(){System.out.println("drawing triangle...");}  
+}  
+class TestPolymorphism2{  
+public static void main(String args[]){  
+Shape s;  
+s=new Rectangle();  
+s.draw();  
+s=new Circle();  
+s.draw();  
+s=new Triangle();  
+s.draw();  
+}  
+}  
+
+
+Q4.Write a program to show Compile time polymorphism in java?
+Ans.
+public class MethodOverloading {
+    void show(int num1)
+    {
+        System.out.println("number 1 : " + num1);
+    }
+    void show(int num1, int num2)
+    {
+        System.out.println("number 1 : " + num1
+                           + "  number 2 : " + num2);
+    }
+ 
+    public static void main(String[] args)
+    {
+        MethodOverloading obj = new MethodOverloading();
+        obj.show(3);
+        obj.show(4, 5);
+    }
+}
+
+
+Q5. Achieve loose coupling in java by using OOPs  concept?
+Ans. To achieve loose coupling, one should use abstract classes or interface while performing inheritance. 
+
+
+Q6. What is the benefit of encapsulation in java?
+Ans.Encapsulation prevents access to data members and data methods by any external classes. The encapsulation process improves the security of the encapsulated data.
+
+
+Q7.Is java a t 100% Object oriented Programming language? If no why ?
+Ans. Java is not 100% objects-oriented because of the existence of primitive data types, use of static keywords and wrapper classes. 
+
+
+Q8.What are the advantages of abstraction in java?
+Ans.  It reduces the complexity of viewing things. Avoids code duplication and increases reusability.
+
+
+Q9.What is an abstraction explained with an Example?
+Ans.In Java, Data Abstraction is the property by virtue of which only the essential details are displayed to the user. The trivial or the non-essential units are not displayed to the user. 
+Ex: A car is viewed as a car rather than its individual components.
+
+
+Q10.What is the final class in Java?
+Ans. The final class is a class that is declared with the final keyword. Subclasses can't inherit a final class or a final class cannot be inherited by any subclass. So, we can restrict class inheritance by making use of a final class.
+
+
