@@ -1,0 +1,94 @@
+Assignment Questions 2
+
+Q1. What are the Conditional Operators in Java?
+Ans. In Java, conditional operators check the condition and decides the desired result on the basis of both conditions. 
+Types of Conditional Operator
+There are three types of the conditional operator in Java:
+Conditional AND
+Conditional OR
+Ternary Operator
+
+
+Q2. What are the types of operators based on the number of operands?
+Ans.There are two types of mathematical operators:  unary and binary. 
+Unary operators perform an action with a single operand. 
+Binary operators perform actions with two operands.
+
+
+Q3.What is the use of Switch case in Java programming?
+Ans. The switch case in java is used to select one of many code blocks for execution. 
+
+
+Q4.What are the conditional Statements and use of conditional statements in Java?
+Ans. Conditional statements in Java are used to make decisions based on certain conditions. The most common conditional statements in Java are the If-Else statement, the Switch statement, and the Ternary Operator. These statements allow the program to execute different blocks of code based on specific conditions.
+
+Q5.What is the syntax of if else statement?
+Ans. 
+if(boolean_expression) {
+   /* statement(s) will execute if the boolean expression is true */
+} else {
+   /* statement(s) will execute if the boolean expression is false */
+}
+
+Q6.How do you compare two strings in Java?
+Ans.
+Using String.equals() 
+Using String.equalsIgnoreCase()
+Using Objects.equals() 
+Using String.compareTo() 
+
+
+Q7.What is Mutable String in Java Explain with an example
+Ans. mutable strings are those strings whose content can be changed without creating a new object. StringBuffer and StringBuilder are mutable versions of String in java.
+Q8.Write a program to sort a String Alphabetically
+Ans.  import java.util.*;
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String str;
+		Scanner sc = new Scanner(System.in);
+       System.out.println("Enter the string : ");
+		str = sc.nextLine();
+		int j = 0;
+		char temp = 0;
+		char[] chars = str.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+				for (j = 0; j < chars.length; j++) {
+						if (chars[j] > chars[i]) {
+								temp = chars[i];
+								chars[i] = chars[j];
+								chars[j] = temp;
+						}
+				}
+		}
+	System.out.println("The sorted string is : ");
+	for (int i = 0; i < chars.length; i++) {
+		System.out.print(chars[i]);
+		}
+
+
+	}
+}
+
+
+Q9.Write a program to check if the letter 'e' is present in the word
+'Umbrella'.
+Ans.
+public class find_char{
+	public static void main(String[] args){
+		String s="Umbrella";
+		int i=s.indexOf('e');
+		if(i==-1){
+			System.out.println("Not found");
+		}
+		else{
+			System.out.println("found at "+i);
+		}
+	}
+}
+
+
+Q10.Where exactly is the string constant pool located in the
+Memory?
+Ans.  String constant pool belongs to the permanent generation area of Heap memory.
