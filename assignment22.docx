@@ -1,0 +1,37 @@
+Q1.What is Spring Framework?
+Ans. Spring Framework is a Java platform that provides comprehensive infrastructure support for developing Java applications. Spring handles the infrastructure so you can focus on your application.
+Q2.What are the features of Spring Framework?
+Ans. Some of the most important features of the Spring framework are as follows:
+IoC containen
+Data access framework
+Spring MVC framework
+Transaction management
+Spring Web Service
+JDBC abstraction layer
+Spring TestContext framework
+
+Q3.What is a Spring configuration file?
+Ans. A Spring configuration file is an XML file that contains the classes information. It describes how those classes are configured as well as introduced to each other. The XML configuration files, however, are verbose and cleaner.
+Q4.What do you mean by IoC Container?
+Ans.IoC container is a framework for implementing automated dependency injection. It contains object creation for the longer ways to use and injects dependencies within the 
+Q5.What do you understand by Dependency Injection?
+Ans. In object-oriented programming (OOP) software design, dependency injection is the process of supplying a resource that a given piece of code requires. The required resource, which is often a component of the application itself, is called a dependency.
+Q6.Explain the difference between constructor and setter injection?
+Ans. Constructor injection: Here, it provides the dependencies through a class constructor. Setter injection: The client uses a setter method into which the injector injects the dependency.
+Q7.What are Spring Beans?
+Ans. In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are called beans. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
+Q8.What are the bean scopes available in Spring?
+Ans. The latest version of the Spring framework defines 6 types of scopes:
+singleton.
+prototype.
+request.
+session.
+application.
+websocket.
+
+Q9.What is Autowiring and name the different modes of it?
+Ans. The autowiring functionality has four modes. These are ' no ', ' byName ', ' byType ' and ' constructor '. Another autowire mode autodetect has been deprecated.
+Q10.Explain Bean life cycle in Spring Bean Factory Container.
+Ans. Bean life cycle is managed by the spring container. When we run the program then, first of all, the spring container gets started. After that, the container creates the instance of a bean as per the request, and then dependencies are injected. And finally, the bean is destroyed when the spring container is closed.
+
+
