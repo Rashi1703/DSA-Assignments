@@ -1,0 +1,251 @@
+Que(1) Delete Node in a Linked List
+
+Ans. class Solution {
+    public void deleteNode(ListNode node) {
+        // Since we know input node is not last node, so nextNode will not be null
+        ListNode nextNode = node.next;
+        // Step 2
+        node.val = nextNode.val;
+        // Step 3
+        node.next = nextNode.next;
+        nextNode.next = null;
+    }
+}
+
+Que(2) Remove Linked List Elements
+Ans. class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        if (head == null) {
+            return null;
+        }
+
+        // Once removeElements call is done, right side of the list is solved.
+        ListNode rightSideHead = removeElements(head.next, val);
+        if (head.val == val) {
+            return rightSideHead;
+        }
+        head.next = rightSideHead;
+        return head;
+    }
+}
+
+Que(3) Merge Two Sorted Lists
+
+Ans. class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+        if(list1!=null && list2!=null){
+        if(list1.val<list2.val){
+            list1.next=mergeTwoLists(list1.next,list2);
+            return list1;
+            }
+            else{
+                list2.next=mergeTwoLists(list1,list2.next);
+                return list2;
+        }
+        }
+        if(list1==null)
+            return list2;
+        return list1;
+    }
+}
+
+Que(4) Linked List Cycle II
+
+Ans. public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        // Initialize tortoise and hare pointers
+        ListNode tortoise = head;
+        ListNode hare = head;
+
+        // Move tortoise one step and hare two steps
+        while (hare != null && hare.next != null) {
+            tortoise = tortoise.next;
+            hare = hare.next.next;
+
+            // Check if the hare meets the tortoise
+            if (tortoise == hare) {
+                break;
+            }
+        }
+
+        // Check if there is no cycle
+        if (hare == null || hare.next == null) {
+            return null;
+        }
+
+        // Reset either tortoise or hare pointer to the head
+        hare = head;
+
+        // Move both pointers one step until they meet again
+        while (tortoise != hare) {
+            tortoise = tortoise.next;
+            hare = hare.next;
+        }
+
+        // Return the node where the cycle begins
+        return tortoise;
+    }
+}
+
+Que(5)  Remove Nth Node From End of List
+
+Ans. class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        //for empty list-->[]
+        if (head==null) return null;
+        
+        ListNode slow=head,fast=head;
+        for (int i=0;i<n;i++)
+        fast=fast.next;
+        
+        //for cases where (n=list size) fast becomes null
+        if (fast==null)return head.next;
+        //for other cases 
+        for (ListNode current=fast;current!=null&&current.next!=null;current=current.next){
+            slow=slow.next;
+        }
+        ListNode temp=slow.next.next;
+        slow.next=temp;
+        return head;//return start pointer
+    }
+}
+
+Que(6) Given a singly linked list of size N. The task is to left-shift the linked list by k nodes, where k is a given positive integer smaller than or equal to the length of the linked list.
+Input: N = 5
+value[] = {2, 4, 7, 8, 9}
+k = 3
+Output: 8 9 2 4 7
+Explanation:Rotate 1:4 -> 7 -> 8 -> 9 -> 2
+Rotate 2: 7 -> 8 -> 9 -> 2 -> 4
+Rotate 3: 8 -> 9 -> 2 -> 4 -> 7
+Ans. class Solution{
+    //Function to rotate a linked list.
+    public Node rotate(Node head, int k) {
+        // add code here
+     
+        Node temp=head;
+        for(int i=1;i<k;i++)
+        {
+            temp=temp.next;
+        }
+        if(temp.next==null){
+            return head;
+        }
+            
+        Node after=temp.next;
+        temp.next=null;
+        Node start=after;
+        while(start.next!=null){
+            start=start.next;
+        }
+        start.next=head;
+        
+        return after;
+        
+    }
+}
+
+Que(7) Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences.
+After doing so, return the head of the final linked list.  You may return any such answer.
+(Note that in the examples below, all sequences are serializations of ListNode objects.)
+Input: head = [1,2,-3,3,1]
+Output: [3,1]
+Note: The answer [1,2,1] would also be accepted.
+Ans. class Solution {
+    public ListNode removeZeroSumSublists(ListNode head) {
+        int sum = 0;
+    ListNode dm = new ListNode(0);
+    dm.next = head;
+
+    Map<Integer, ListNode> mp = new HashMap<>();
+    mp.put(0, dm);
+
+
+    for (ListNode i = dm; i != null; i = i.next) {
+        sum += i.val;
+        mp.put(sum, i);
+    }
+
+
+    sum = 0;
+    for (ListNode i = dm; i != null; i = i.next) {
+        sum += i.val;
+        i.next = mp.get( sum ).next;
+    }
+    
+    return dm.next;
+    }
+}
+
+Que(8) Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list.
+The first node is considered odd, and the second node is even, and so on.
+Note that the relative order inside both the even and odd groups should remain as it was in the input.
+You must solve the problem in O(1) extra space complexity and O(n) time complexity.
+Input: head = [1,2,3,4,5]
+Output: [1,3,5,2,4]
+
+Ans. class ListNode {
+	int val;
+	ListNode next;
+	ListNode(int val, ListNode next) {
+		this.val = val;
+		this.next = next;
+	}
+	ListNode(int val) {
+		this(val, null);
+	}
+}
+
+class Solution {
+	public ListNode rearrangeLinkedList(ListNode head) {
+		// Initialize pointers
+		ListNode oddHead = new ListNode(0), odd = oddHead;
+		ListNode evenHead = new ListNode(0), even = evenHead;
+		ListNode curr = head;
+		int counter = 1;
+		
+		// Traverse the original linked list
+		while (curr != null) {
+			if (counter % 2 == 1) {
+				// Odd-positioned node
+				odd.next = curr;
+				odd = odd.next;
+			} else {
+				// Even-positioned node
+				even.next = curr;
+				even = even.next;
+			}
+			
+			// Move to the next node
+			curr = curr.next;
+			counter++;
+		}
+		
+		// Merge the odd-positioned linked list and the even-positioned linked list
+		odd.next = evenHead.next;
+		even.next = null;
+		
+		// Return the rearranged linked list
+		return oddHead.next;
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		// Create the linked list 1->2->3->4
+		ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
+		
+		// Rearrange the linked list
+		Solution solution = new Solution();
+		ListNode newHead = solution.rearrangeLinkedList(head);
+		
+		// Print the rearranged linked list
+		while (newHead != null) {
+			System.out.print(newHead.val + "->");
+			newHead = newHead.next;
+		}
+	}
+}
+
+
