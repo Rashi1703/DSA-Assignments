@@ -1,1 +1,35 @@
+Q1.What is ORM in Hibernate?
+Ans. ORM stands for Object-Relational Mapping (ORM) is a programming technique for converting data between relational databases and object oriented programming languages such as Java, C#, etc. 
 
+Q2.What are the advantages of Hibernate over JDBC?
+Ans. From a developer's perspective, the key benefit of Hibernate over JDBC is the fact that developers can code their Java applications based on object-oriented principles and best practices without worrying about database semantics.
+
+Q3.What are some of the important interfaces of Hibernate framework?
+Ans.. The core interfaces of Hibernate framework are:
+Configuration.
+SessionFactory.
+Session.
+Query.
+Criteria.
+Transaction.
+
+Q4.What is a Session in Hibernate?
+Ans. A Session is used to get a physical connection with a database.
+
+Q5.What is a SessionFactory?
+Ans. The SessionFactory is a thread safe object and used by all the threads of an application. The SessionFactory is a heavyweight object; it is usually created during application start up and kept for later use. You would need one SessionFactory object per database using a separate configuration file.
+
+Q6.What is HQL?
+Ans. HQL or Hive Query Language is a simple yet powerful SQL like querying language which provides the users with the ability to perform data analytics on big datasets.
+
+Q7.What are Many to Many associations?
+Ans. A many-to-many relationship occurs when multiple records in a table are associated with multiple records in another table.
+
+Q8.What is Hibernate caching?
+Ans. Hibernate caching improves the performance of the application by pooling the object in the cache. It is useful when we have to fetch the same data multiple times. There are mainly two types of caching: First Level Cache, and. Second Level Cache.
+
+Q9.What is the difference between first level cache and second level cache?
+Ans.Unlike the first-level cache which is accessible only to the session that maintains it, Second-level Cache is accessible to all Sessions. This means if one Session loads an object, like Person with id=1 and the Second session also loads the same object, only one database call will be made.
+
+Q10.What can you tell about Hibernate Configuration File?
+Ans. Hibernate Configuration File(cfg file) is the file loaded into an hibernate application when working with hibernate. Hibernate uses this file to establish connection to the database server.It is an XML file which is used to define below information. Standard name for this file is hibernate. cfg.
