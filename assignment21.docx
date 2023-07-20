@@ -1,0 +1,21 @@
+Q1.What is the Spring MVC framework?
+Ans. The Spring Web model-view-controller (MVC) framework is designed around a DispatcherServlet that dispatches requests to handlers, with configurable handler mappings, view resolution, locale and theme resolution as well as support for uploading files.
+Q2.What are the benefits of Spring MVC framework over other MVC frameworks?
+Ans. It enables rapid and parallel development. Development of the application becomes fast. Easy for multiple developers to work together. Easier to Update the application.
+Q3.What is DispatcherServlet in Spring MVC? In other words, can you explain the Spring MVC architecture?
+Ans. The DispatcherServlet is the front controller in Spring web applications. It's used to create web applications and REST services in Spring MVC. In a traditional Spring web application, this servlet is defined in the web.
+Q4.What is a View Resolver pattern and explain its significance in Spring MVC?
+Ans.All MVC frameworks provide a way of working with views. Spring does that via the view resolvers, which enable you to render models in the browser without tying the implementation to a specific view technology. The ViewResolver maps view names to actual views.
+Q5.What are the differences between @RequestParam and @PathVariable annotations?
+Ans.@RequestParam is used to capture query parameters or form parameters from the URL, while @PathVariable is used to capture values from the URL path. They also have different syntax, usage, and behavior in handling URL parameters in Spring MVC applications.
+Q6.What is the Model in Spring MVC?
+Ans.In Spring MVC, the model works a container that contains the data of the application. Here, a data can be in any form such as objects, strings, information from the database, etc. It is required to place the Model interface in the controller part of the application.
+Q7.What is the role of @ModelAttribute annotation?
+Ans. @ModelAttribute is an annotation that binds a method parameter or method return value to a named model attribute, and then exposes it to a web view. In this tutorial, we'll demonstrate the usability and functionality of this annotation through a common concept, a form submitted from a company's employee.
+Q8.What is the significance of @Repository annotation?
+Ans. @Repository Annotation is a specialization of @Component annotation which is used to indicate that the class provides the mechanism for storage, retrieval, update, delete and search operation on objects.
+Q9.What does REST stand for? and what is RESTful web services?
+Ans. Representational State Transfer (REST) is a software architecture that imposes conditions on how an API should work. REST was initially created as a guideline to manage communication on a complex network like the internet.
+Q10.What is differences between RESTful web services and SOAP web services?
+Ans. SOAP supports only XML data exchange. REST supports XML, JSON, plain text, HTML. SOAP messages are larger, which makes communication slower. REST has faster performance due to smaller messages and caching support.
+
