@@ -1,0 +1,285 @@
+Q1) Make The String Great
+Ans. 
+class Solution {
+    public String makeGood(String s) {
+        Stack<Character> stack = new Stack<>();
+        
+        for (char currChar : s.toCharArray()) {
+            if (!stack.isEmpty() && Math.abs(stack.lastElement() - currChar) == 32) 
+                stack.pop();
+            else
+                stack.add(currChar);
+        }
+        StringBuilder ans = new StringBuilder();
+        for (char currChar : stack) 
+            ans.append(currChar);
+        return ans.toString();
+    }
+}
+
+Q2) Remove All Adjacent Duplicates In String
+
+Ans. 
+class Solution {
+    public String removeDuplicates(String s) {
+       StringBuilder sb=new StringBuilder() ;
+       for(char c:s.toCharArray()){
+           int size=sb.length();
+           if(size>0 && sb.charAt(size-1)==c){
+               sb.deleteCharAt(size-1);
+           }
+           else{
+               sb.append(c);
+           }
+       }
+      return sb.toString();  
+    }
+}
+
+Q3) Online Stock Span
+Ans. 
+class StockSpanner {
+    Stack<int[]> stack = new Stack<>();
+    
+    public int next(int price) {
+        int ans = 1;
+        while (!stack.isEmpty() && stack.peek()[0] <= price) {
+            ans += stack.pop()[1];
+        }
+        
+        stack.push(new int[] {price, ans});
+        return ans;
+    }
+}
+
+Q4) Time Needed to Buy Tickets
+
+Ans. 
+class Solution {
+    public int timeRequiredToBuy(int[] tickets, int k) {
+        int ans =0;
+        for(int i=0;i<tickets.length;i++){
+            if(i<=k){
+                ans+=Math.min(tickets[i],tickets[k]);
+            }else{
+                ans+=Math.min(tickets[k]-1,tickets[i]);
+            }
+        }
+        return ans;
+    }
+}
+
+Q5) Product of the last K Numbers
+Ans. 
+class ProductOfNumbers {
+    final List<Integer> list;
+    int lastProduct;
+    public ProductOfNumbers() {
+        this.list = new ArrayList<Integer>();
+        lastProduct = 1;
+    }
+    
+    public void add(int num) {
+        if(num == 0){
+            list.clear();
+            lastProduct = 1;
+        }    
+        else{
+            lastProduct = lastProduct * num;
+            list.add(lastProduct);
+        }
+    }
+    
+    public int getProduct(int k) {
+        int idx = list.size() - k;
+        if(idx > 0){
+            return lastProduct / list.get(idx - 1);
+        }
+        if(idx == 0){
+            return lastProduct;
+        }
+        return 0;
+    }
+}
+
+Q6) Largest Rectangle in Histogram
+Ans. 
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        Deque<Pair<Integer, Integer>> st = new LinkedList<>();
+
+        int max = 0;
+
+        for(int i = 0; i < heights.length; i++){
+
+            int idx = i;
+
+            while(st.size() > 0 && st.peek().getKey() >= heights[i]){
+                Pair<Integer, Integer> p = st.pop();
+
+                idx = p.getValue();
+
+                int area = p.getKey()*(i - idx);
+
+                max = Math.max(max, area);
+            }
+
+            st.push(new Pair<>(heights[i], idx));
+        }
+
+        while(st.size() > 0){
+            Pair<Integer, Integer> p = st.pop();
+
+            max = Math.max(max, p.getKey()*(heights.length - p.getValue()));
+        }
+
+        return max;
+
+
+    }
+}
+
+Q7) Sliding Window Maximum
+Ans.
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        Deque<Integer> dq = new ArrayDeque<>();
+        List<Integer> res = new ArrayList<>();
+
+        for (int i = 0; i < k; i++) {
+            while (!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]) {
+                dq.pollLast();
+            }
+            dq.offerLast(i);
+        }
+        res.add(nums[dq.peekFirst()]);
+
+        for (int i = k; i < nums.length; i++) {
+            if (dq.peekFirst() == i - k) {
+                dq.pollFirst();
+            }
+            while (!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]) {
+                dq.pollLast();
+            }
+
+            dq.offerLast(i);
+            res.add(nums[dq.peekFirst()]);
+        }
+        // Return the result as an array.
+        return res.stream().mapToInt(i->i).toArray();
+    }
+}
+
+Q8) Design a circular queue data structure with the following operations: enQueue, deQueue, Front, Rear, and isEmpty.
+Ans.
+public class CQueue {
+  int SIZE = 5; // Size of Circular Queue
+  int front, rear;
+  int items[] = new int[SIZE];
+
+  CQueue() {
+    front = -1;
+    rear = -1;
+  }
+
+  // Check if the queue is full
+  boolean isFull() {
+    if (front == 0 && rear == SIZE - 1) {
+      return true;
+    }
+    if (front == rear + 1) {
+      return true;
+    }
+    return false;
+  }
+
+  // Check if the queue is empty
+  boolean isEmpty() {
+    if (front == -1)
+      return true;
+    else
+      return false;
+  }
+
+  // Adding an element
+  void enQueue(int element) {
+    if (isFull()) {
+      System.out.println("Queue is full");
+    } else {
+      if (front == -1)
+        front = 0;
+      rear = (rear + 1) % SIZE;
+      items[rear] = element;
+      System.out.println("Inserted " + element);
+    }
+  }
+
+  // Removing an element
+  int deQueue() {
+    int element;
+    if (isEmpty()) {
+      System.out.println("Queue is empty");
+      return (-1);
+    } else {
+      element = items[front];
+      if (front == rear) {
+        front = -1;
+        rear = -1;
+      } /* Q has only one element, so we reset the queue after deleting it. */
+      else {
+        front = (front + 1) % SIZE;
+      }
+      return (element);
+    }
+  }
+
+  void display() {
+    /* Function to display status of Circular Queue */
+    int i;
+    if (isEmpty()) {
+      System.out.println("Empty Queue");
+    } else {
+      System.out.println("Front -> " + front);
+      System.out.println("Items -> ");
+      for (i = front; i != rear; i = (i + 1) % SIZE)
+        System.out.print(items[i] + " ");
+      System.out.println(items[i]);
+      System.out.println("Rear -> " + rear);
+    }
+  }
+
+  public static void main(String[] args) {
+
+    CQueue q = new CQueue();
+
+    // Fails because front = -1
+    q.deQueue();
+
+    q.enQueue(1);
+    q.enQueue(2);
+    q.enQueue(3);
+    q.enQueue(4);
+    q.enQueue(5);
+
+    // Fails to enqueue because front == 0 && rear == SIZE - 1
+    q.enQueue(6);
+
+    q.display();
+
+    int elem = q.deQueue();
+
+    if (elem != -1) {
+      System.out.println("Deleted Element is " + elem);
+    }
+    q.display();
+
+    q.enQueue(7);
+
+    q.display();
+
+    // Fails to enqueue because front == rear + 1
+    q.enQueue(8);
+  }
+
+}
+
